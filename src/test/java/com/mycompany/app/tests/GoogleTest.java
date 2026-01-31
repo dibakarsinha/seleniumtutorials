@@ -1,5 +1,7 @@
-package com.mycompany.app;
+package com.mycompany.app.tests;
 
+import com.mycompany.app.pages.GoogleHomePage;
+import com.mycompany.app.utils.TestFailureListener;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.WebDriver;
@@ -11,10 +13,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @ExtendWith(TestFailureListener.class)
 public class GoogleTest {
 
-    WebDriver driver; // IMPORTANT: must be field-level
+    public WebDriver driver;
 
     @Test
-    void openGoogleInHeadlessMode() {
+    void verifyGoogleTitle() {
 
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--headless=new");
@@ -22,10 +24,12 @@ public class GoogleTest {
         options.addArguments("--disable-dev-shm-usage");
 
         driver = new ChromeDriver(options);
-        driver.get("https://www.google.com");
 
-        // Intentionally wrong to test screenshot
-        assertEquals("Google123", driver.getTitle());
+        GoogleHomePage googleHomePage = new GoogleHomePage(driver);
+        googleHomePage.open();
+
+        assertEquals("Google", googleHomePage.getTitle());
+
 
         driver.quit();
     }
