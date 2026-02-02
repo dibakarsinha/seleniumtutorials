@@ -54,16 +54,14 @@ public class RelativeLocator {
         } catch (URISyntaxException ex) {
             System.getLogger(RelativeLocator.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
         }
-        System.out.println("File exists? " + uploadFile.exists());
-        System.out.println("Absolute path: " + uploadFile.getAbsolutePath());
-        try {
-            uploadFile = new File(resource.toURI());
-        } catch (URISyntaxException ex) {
-            System.getLogger(RelativeLocator.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
-        }
-
-        driver.findElement(By.name("my-file"))
+        if (uploadFile != null) {
+            System.out.println("File exists? " + uploadFile.exists());
+            driver.findElement(By.name("my-file"))
               .sendKeys(uploadFile.getAbsolutePath());
+        } else {
+            System.out.println("File upload failed: uploadFile is null.");
+        }  
+        
 
 // Submit button
         driver.findElement(By.cssSelector("button")).click();
