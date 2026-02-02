@@ -14,17 +14,15 @@ public class LoginTest {
         System.out.println("LoginTest class is ready for future implementations."); 
 
         switch (browser) {
-            case "chrome":
+            case "chrome" -> {
                 driver=new ChromeDriver();
                 System.out.println("Chrome browser selected.");
-                break;
-            case "firefox":
+            }
+            case "firefox" -> {
                 driver=new FirefoxDriver();
                 System.out.println("Other browser selected.");
-                break;
-            default:
-                System.out.println("No valid browser selected.");
-                break;
+            }
+            default -> System.out.println("No valid browser selected.");
         }
         driver.get("https://www.selenium.dev/selenium/web/web-form.html");
         WebElement textBox = driver.findElement(By.ByXPath.xpath("//*[@id=\"my-text-id\"]"));
