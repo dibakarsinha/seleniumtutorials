@@ -1,11 +1,11 @@
 package com.mycompany.app.utils;
 
+import java.time.Duration;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-
-import java.time.Duration;
 
 public class FirstScript {
     public static void main(String[] args) {
@@ -15,7 +15,7 @@ public class FirstScript {
 
         driver.getTitle();
 
-        driver.manage().timeouts().implicitlyWait(Duration.ofMillis(500));
+        driver.manage().timeouts().implicitlyWait(Duration.ofMillis(50000));
 
         //WebElement textBox = driver.findElement(By.name("my-text"));
         WebElement textBox = driver.findElement(By.ByXPath.xpath("//*[@id=\"my-text-id\"]"));
@@ -24,6 +24,6 @@ public class FirstScript {
         textBoxElement.sendKeys("This is a sample text area input.");
         textBox.sendKeys("Selenium");
         submitButton.click();
-        driver.quit();
+        //driver.quit();
     }
 }
